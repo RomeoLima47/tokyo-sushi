@@ -23,6 +23,10 @@ const schema = {
 
   description: restaurant.description,
 
+  telephone: restaurant.phoneDisplay,
+
+  email: restaurant.email,
+
   servesCuisine: [
     "Japanese",
     "Sushi",
@@ -34,28 +38,61 @@ const schema = {
 
   hasMenu: `${restaurant.website}/menu`,
 
-  acceptsReservations: false,
-
-  ...(restaurant.phone && {
-    telephone: restaurant.phoneDisplay
-  }),
+  acceptsReservations: restaurant.acceptsReservations,
 
   address: {
     "@type": "PostalAddress",
 
-    ...(restaurant.address.street && {
-      streetAddress: restaurant.address.street
-    }),
+    streetAddress:
+      restaurant.address.street,
 
-    addressLocality: restaurant.address.city,
+    addressLocality:
+      restaurant.address.city,
 
-    addressRegion: restaurant.address.state,
+    addressRegion:
+      restaurant.address.state,
 
-    ...(restaurant.address.postalCode && {
-      postalCode: restaurant.address.postalCode
-    }),
+    postalCode:
+      restaurant.address.postalCode,
 
-    addressCountry: restaurant.address.country
+    addressCountry:
+      restaurant.address.country
+  },
+
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+
+      opens: "11:45",
+
+      closes: "23:00"
+    },
+
+    {
+      "@type": "OpeningHoursSpecification",
+
+      dayOfWeek: "Sunday",
+
+      opens: "17:00",
+
+      closes: "23:00"
+    }
+  ],
+
+  potentialAction: {
+    "@type": "OrderAction",
+
+    target:
+      restaurant.links.order
   }
 };
 ---

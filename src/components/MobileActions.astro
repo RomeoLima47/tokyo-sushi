@@ -1,14 +1,29 @@
 ---
 import { restaurant } from "../data/restaurant";
+
+const hasPhone = Boolean(restaurant.phone);
+const hasDirections = Boolean(restaurant.links.googleMaps);
+
+const actionCount =
+  1 +
+  (hasPhone ? 1 : 0) +
+  (hasDirections ? 1 : 0);
+
+const gridClass =
+  actionCount === 3
+    ? "grid-cols-3"
+    : actionCount === 2
+      ? "grid-cols-2"
+      : "grid-cols-1";
 ---
 
 <div
   class="fixed inset-x-0 bottom-0 z-50 border-t border-black/10 bg-white shadow-lg md:hidden"
 >
-  <div class="grid grid-cols-3">
+  <div class:list={["grid", gridClass]}>
 
     {
-      restaurant.phone && (
+      hasPhone && (
         <a
           href={`tel:${restaurant.phone}`}
           class="flex min-h-14 items-center justify-center border-r border-black/10 text-sm font-semibold"
@@ -19,7 +34,7 @@ import { restaurant } from "../data/restaurant";
     }
 
     {
-      restaurant.links.googleMaps && (
+      hasDirections && (
         <a
           href={restaurant.links.googleMaps}
           target="_blank"

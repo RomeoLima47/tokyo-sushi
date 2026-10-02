@@ -4,27 +4,28 @@ export const restaurant = {
   shortName: "Tokyo Sushi",
 
   description:
-    "Japanese and Korean cuisine in Fort Lauderdale, Florida featuring sushi, sashimi, Korean BBQ, ramen, noodles and house specialties.",
+    "Tokyo Sushi & Korean Bistro serves Japanese and Korean cuisine in Fort Lauderdale, Florida, including sushi, sashimi, Korean BBQ, ramen, noodles, specialty rolls and more.",
 
-  website:
-    "https://www.tokyosushifll.com",
+  website: "https://www.tokyosushifll.com",
 
-  phone: "",
-  phoneDisplay: "",
+  phone: "+19549904099",
 
-  email: "",
+  phoneDisplay: "(954) 990-4099",
+
+  email: "tokyosushi.fll@gmail.com",
+
+  acceptsReservations: true,
 
   address: {
-    street: "",
+    street: "1499 SE 17th St STE E",
     city: "Fort Lauderdale",
     state: "FL",
-    postalCode: "",
+    postalCode: "33316",
     country: "US",
   },
 
   links: {
-    order:
-      "https://order.tokyosushifll.com",
+    order: "https://order.tokyosushifll.com",
 
     googleMaps: "",
 
@@ -43,32 +44,13 @@ export const restaurant = {
 
   hours: [
     {
-      days: "Monday",
-      hours: "",
+      days: "Monday – Saturday",
+      hours: "11:45 AM – 11:00 PM",
     },
-    {
-      days: "Tuesday",
-      hours: "",
-    },
-    {
-      days: "Wednesday",
-      hours: "",
-    },
-    {
-      days: "Thursday",
-      hours: "",
-    },
-    {
-      days: "Friday",
-      hours: "",
-    },
-    {
-      days: "Saturday",
-      hours: "",
-    },
+
     {
       days: "Sunday",
-      hours: "",
+      hours: "5:00 PM – 11:00 PM",
     },
   ],
 

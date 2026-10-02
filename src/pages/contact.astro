@@ -2,13 +2,14 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+
 import { restaurant } from "../data/restaurant";
 
 const title =
   "Contact & Hours | Tokyo Sushi & Korean Bistro";
 
 const description =
-  "Contact Tokyo Sushi & Korean Bistro in Fort Lauderdale, Florida. Find restaurant hours, directions and ordering information.";
+  "Contact Tokyo Sushi & Korean Bistro in Fort Lauderdale, Florida. View restaurant hours, phone number, address, reservations and online ordering information.";
 ---
 
 <Layout
@@ -18,9 +19,14 @@ const description =
 
   <Header />
 
+
   <main>
 
-    <section class="bg-[#181512] text-white">
+    <!-- PAGE HEADER -->
+
+    <section
+      class="bg-[#181512] text-white"
+    >
 
       <div
         class="mx-auto max-w-7xl px-5 py-20 text-center lg:px-8"
@@ -32,11 +38,13 @@ const description =
           Visit Us
         </p>
 
+
         <h1
           class="mt-4 text-5xl font-bold tracking-tight sm:text-6xl"
         >
           Contact & Hours
         </h1>
+
 
         <p
           class="mx-auto mt-5 max-w-xl text-lg leading-8 text-white/70"
@@ -49,13 +57,17 @@ const description =
     </section>
 
 
-    <section class="py-20">
+    <!-- CONTACT CONTENT -->
+
+    <section
+      class="py-20"
+    >
 
       <div
         class="mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-2 lg:px-8"
       >
 
-        <!-- CONTACT -->
+        <!-- LEFT COLUMN -->
 
         <div>
 
@@ -65,6 +77,7 @@ const description =
             Restaurant
           </p>
 
+
           <h2
             class="mt-3 text-3xl font-bold"
           >
@@ -73,8 +86,10 @@ const description =
 
 
           <div
-            class="mt-8 space-y-6 text-black/70"
+            class="mt-8 space-y-7"
           >
+
+            <!-- LOCATION -->
 
             <div>
 
@@ -84,12 +99,23 @@ const description =
                 Location
               </p>
 
-              <p class="mt-1">
-                Fort Lauderdale, Florida
-              </p>
+
+              <address
+                class="mt-1 not-italic leading-7 text-black/70"
+              >
+                {restaurant.address.street}
+
+                <br />
+
+                {restaurant.address.city},{" "}
+                {restaurant.address.state}{" "}
+                {restaurant.address.postalCode}
+              </address>
 
             </div>
 
+
+            <!-- PHONE -->
 
             {
               restaurant.phoneDisplay && (
@@ -102,9 +128,10 @@ const description =
                     Phone
                   </p>
 
+
                   <a
                     href={`tel:${restaurant.phone}`}
-                    class="mt-1 inline-block font-medium text-black hover:text-red-800"
+                    class="mt-1 inline-block text-lg font-semibold text-black transition hover:text-red-800"
                   >
                     {restaurant.phoneDisplay}
                   </a>
@@ -114,6 +141,8 @@ const description =
               )
             }
 
+
+            <!-- EMAIL -->
 
             {
               restaurant.email && (
@@ -126,11 +155,46 @@ const description =
                     Email
                   </p>
 
+
                   <a
                     href={`mailto:${restaurant.email}`}
-                    class="mt-1 inline-block font-medium text-black hover:text-red-800"
+                    class="mt-1 inline-block font-medium text-black transition hover:text-red-800"
                   >
                     {restaurant.email}
+                  </a>
+
+                </div>
+
+              )
+            }
+
+
+            <!-- RESERVATIONS -->
+
+            {
+              restaurant.acceptsReservations && (
+
+                <div>
+
+                  <p
+                    class="text-xs font-semibold uppercase tracking-wider text-black/40"
+                  >
+                    Reservations
+                  </p>
+
+
+                  <p
+                    class="mt-1 text-black/70"
+                  >
+                    Reservations accepted by phone.
+                  </p>
+
+
+                  <a
+                    href={`tel:${restaurant.phone}`}
+                    class="mt-2 inline-block font-semibold text-black transition hover:text-red-800"
+                  >
+                    Call {restaurant.phoneDisplay}
                   </a>
 
                 </div>
@@ -141,7 +205,11 @@ const description =
           </div>
 
 
-          <div class="mt-9 flex flex-wrap gap-3">
+          <!-- ACTION BUTTONS -->
+
+          <div
+            class="mt-10 flex flex-wrap gap-3"
+          >
 
             {
               restaurant.links.googleMaps && (
@@ -150,13 +218,14 @@ const description =
                   href={restaurant.links.googleMaps}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="rounded-md bg-black px-5 py-3 font-semibold text-white"
+                  class="rounded-md bg-black px-5 py-3 font-semibold text-white transition hover:bg-black/80"
                 >
                   Get Directions
                 </a>
 
               )
             }
+
 
             {
               restaurant.links.yelp && (
@@ -165,7 +234,7 @@ const description =
                   href={restaurant.links.yelp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="rounded-md border border-black/20 px-5 py-3 font-semibold"
+                  class="rounded-md border border-black/20 px-5 py-3 font-semibold transition hover:bg-black hover:text-white"
                 >
                   Yelp
                 </a>
@@ -173,35 +242,60 @@ const description =
               )
             }
 
+
+            <a
+              href={restaurant.links.order}
+              class="rounded-md bg-red-800 px-5 py-3 font-semibold text-white transition hover:bg-red-900"
+            >
+              Order Online
+            </a>
+
           </div>
 
         </div>
 
 
-        <!-- HOURS -->
+        <!-- RIGHT COLUMN: HOURS -->
 
         <div
           class="rounded-xl border border-black/10 bg-white p-8"
         >
 
-          <h2 class="text-2xl font-bold">
+          <p
+            class="text-sm font-semibold uppercase tracking-[0.18em] text-red-800"
+          >
+            Restaurant Hours
+          </p>
+
+
+          <h2
+            class="mt-3 text-3xl font-bold"
+          >
             Hours
           </h2>
 
-          <div class="mt-6 divide-y divide-black/10">
+
+          <div
+            class="mt-7 divide-y divide-black/10"
+          >
 
             {
               restaurant.hours.map((entry) => (
 
                 <div
-                  class="flex justify-between gap-5 py-4 first:pt-0"
+                  class="flex items-start justify-between gap-6 py-4 first:pt-0"
                 >
 
-                  <span class="font-medium">
+                  <span
+                    class="font-medium"
+                  >
                     {entry.days}
                   </span>
 
-                  <span class="text-right text-black/60">
+
+                  <span
+                    class="text-right text-black/60"
+                  >
                     {entry.hours}
                   </span>
 
@@ -211,6 +305,49 @@ const description =
             }
 
           </div>
+
+
+          <!-- LUNCH HOURS -->
+
+          {
+            restaurant.lunchHours && (
+
+              <div
+                class="mt-8 rounded-lg bg-[#f8f4ec] p-6"
+              >
+
+                <p
+                  class="text-xs font-semibold uppercase tracking-wider text-black/40"
+                >
+                  Lunch Hours
+                </p>
+
+
+                <p
+                  class="mt-2 font-semibold"
+                >
+                  {restaurant.lunchHours.days}
+                </p>
+
+
+                <p
+                  class="mt-1 text-black/60"
+                >
+                  {restaurant.lunchHours.hours}
+                </p>
+
+
+                <a
+                  href="/lunch"
+                  class="mt-4 inline-block font-semibold text-red-800 transition hover:text-red-900"
+                >
+                  View Lunch Menu →
+                </a>
+
+              </div>
+
+            )
+          }
 
 
           <a
@@ -227,6 +364,7 @@ const description =
     </section>
 
   </main>
+
 
   <Footer />
 
