@@ -1,0 +1,92 @@
+---
+import { Image } from "astro:assets";
+import heroImage from "../assets/hero.jpg";
+import { restaurant } from "../data/restaurant";
+---
+
+<section
+  class="relative overflow-hidden bg-[#181512] text-white"
+>
+
+  <div
+    class="mx-auto grid min-h-[680px] max-w-7xl items-center gap-12 px-5 py-20 lg:grid-cols-2 lg:px-8"
+  >
+
+    <!-- TEXT -->
+
+    <div class="relative z-10">
+
+      <p
+        class="mb-4 text-sm font-semibold uppercase tracking-[0.22em] text-red-400"
+      >
+        Fort Lauderdale, Florida
+      </p>
+
+      <h1
+        class="max-w-2xl text-5xl font-bold leading-[1.04] tracking-tight sm:text-6xl lg:text-7xl"
+      >
+        Japanese tradition.
+        <br />
+        Korean flavor.
+      </h1>
+
+      <p
+        class="mt-7 max-w-xl text-lg leading-8 text-white/70"
+      >
+        Sushi, sashimi, Korean BBQ, noodles and house
+        specialties prepared at Tokyo Sushi & Korean Bistro.
+      </p>
+
+      <div
+        class="mt-9 flex flex-wrap gap-4"
+      >
+
+        <a
+          href={restaurant.links.order}
+          class="rounded-md bg-red-700 px-6 py-3.5 font-semibold text-white transition hover:bg-red-600"
+        >
+          Order Online
+        </a>
+
+        <a
+          href="/menu"
+          class="rounded-md border border-white/30 px-6 py-3.5 font-semibold transition hover:bg-white hover:text-black"
+        >
+          Dinner Menu
+        </a>
+
+        <a
+          href="/lunch"
+          class="rounded-md border border-white/30 px-6 py-3.5 font-semibold transition hover:bg-white hover:text-black"
+        >
+          Lunch Menu
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- IMAGE -->
+
+    <div
+      class="relative overflow-hidden rounded-2xl"
+    >
+
+      <Image
+        src={heroImage}
+        alt="Japanese and Korean cuisine at Tokyo Sushi & Korean Bistro"
+        priority
+        layout="full-width"
+        class="aspect-[4/3] h-full w-full object-cover"
+      />
+
+      <div
+        class="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10"
+      ></div>
+
+    </div>
+
+  </div>
+
+</section>

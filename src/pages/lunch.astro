@@ -1,0 +1,54 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import MenuSections from "../components/MenuSections.astro";
+import { lunchMenu, lunchHours } from "../data/lunchMenu";
+import { restaurant } from "../data/restaurant";
+
+const title = "Lunch Menu | Tokyo Sushi & Korean Bistro – Fort Lauderdale";
+const description =
+  "View lunch specials at Tokyo Sushi & Korean Bistro in Fort Lauderdale, including sushi, sashimi, Korean plates, noodles, rice, teriyaki and soups.";
+---
+
+<Layout title={title} description={description}>
+  <Header />
+
+  <main>
+    <section class="bg-[#181512] text-white">
+      <div class="mx-auto max-w-7xl px-5 py-20 text-center lg:px-8">
+        <p class="text-sm font-semibold uppercase tracking-[0.22em] text-red-400">
+          {lunchHours}
+        </p>
+
+        <h1 class="mt-4 text-5xl font-bold tracking-tight sm:text-6xl">
+          Lunch Menu
+        </h1>
+
+        <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/70">
+          Weekday lunch favorites from the sushi bar and kitchen.
+        </p>
+
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <a
+            href="/menu"
+            class="rounded-md border border-white/30 px-5 py-3 font-semibold transition hover:bg-white hover:text-black"
+          >
+            View Dinner Menu
+          </a>
+
+          <a
+            href={restaurant.links.order}
+            class="rounded-md bg-red-700 px-5 py-3 font-semibold text-white transition hover:bg-red-600"
+          >
+            Order Online
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <MenuSections sections={lunchMenu} />
+  </main>
+
+  <Footer />
+</Layout>

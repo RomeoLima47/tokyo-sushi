@@ -1,0 +1,146 @@
+---
+import { restaurant } from "../data/restaurant";
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-black/10 bg-[#f8f4ec]/95 backdrop-blur"
+>
+  <div
+    class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 lg:px-8"
+  >
+
+    <!-- BRAND -->
+
+    <a
+      href="/"
+      class="flex items-center gap-3"
+      aria-label="Tokyo Sushi & Korean Bistro home"
+    >
+
+      <img
+        src="/images/logo/tokyo-logo.png"
+        alt=""
+        width="48"
+        height="48"
+        class="h-12 w-12 object-contain"
+      />
+
+      <div class="hidden sm:block">
+
+        <div class="font-semibold leading-tight">
+          Tokyo Sushi
+        </div>
+
+        <div
+          class="text-xs uppercase tracking-[0.14em] text-black/50"
+        >
+          Korean Bistro
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <!-- DESKTOP NAVIGATION -->
+
+    <nav
+      aria-label="Main navigation"
+      class="hidden items-center gap-6 text-sm font-medium md:flex"
+    >
+
+      <a
+        href="/menu"
+        class="transition hover:text-red-800"
+      >
+        Dinner
+      </a>
+
+      <a
+        href="/lunch"
+        class="transition hover:text-red-800"
+      >
+        Lunch
+      </a>
+
+      <a
+        href="/#location"
+        class="transition hover:text-red-800"
+      >
+        Location
+      </a>
+
+      <a
+        href="/contact"
+        class="transition hover:text-red-800"
+      >
+        Contact
+      </a>
+
+      <a
+        href={restaurant.links.order}
+        class="rounded-md bg-red-800 px-5 py-3 font-semibold text-white transition hover:bg-red-900"
+      >
+        Order Online
+      </a>
+
+    </nav>
+
+
+    <!-- MOBILE MENU -->
+
+    <details class="relative md:hidden">
+
+      <summary
+        class="cursor-pointer list-none rounded-md border border-black/15 px-4 py-2 text-sm font-semibold"
+      >
+        Menu
+      </summary>
+
+
+      <nav
+        aria-label="Mobile navigation"
+        class="absolute right-0 mt-3 w-56 overflow-hidden rounded-lg border border-black/10 bg-white shadow-xl"
+      >
+
+        <a
+          href="/menu"
+          class="block border-b border-black/5 px-5 py-4 font-medium"
+        >
+          Dinner Menu
+        </a>
+
+        <a
+          href="/lunch"
+          class="block border-b border-black/5 px-5 py-4 font-medium"
+        >
+          Lunch Menu
+        </a>
+
+        <a
+          href="/#location"
+          class="block border-b border-black/5 px-5 py-4 font-medium"
+        >
+          Location
+        </a>
+
+        <a
+          href="/contact"
+          class="block border-b border-black/5 px-5 py-4 font-medium"
+        >
+          Contact
+        </a>
+
+        <a
+          href={restaurant.links.order}
+          class="block bg-red-800 px-5 py-4 font-semibold text-white"
+        >
+          Order Online
+        </a>
+
+      </nav>
+
+    </details>
+
+  </div>
+</header>

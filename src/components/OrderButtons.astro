@@ -1,0 +1,61 @@
+---
+import { restaurant } from "../data/restaurant";
+
+const deliveryServices = [
+  {
+    name: "Order Direct",
+    url: restaurant.links.order,
+    primary: true
+  },
+
+  {
+    name: "DoorDash",
+    url: restaurant.links.doordash,
+    primary: false
+  },
+
+  {
+    name: "Uber Eats",
+    url: restaurant.links.uberEats,
+    primary: false
+  }
+];
+
+const availableServices =
+  deliveryServices.filter(
+    (service) => service.url
+  );
+---
+
+<div
+  class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
+>
+  {
+    availableServices.map((service) => (
+
+      <a
+        href={service.url}
+        target={
+          service.primary
+            ? undefined
+            : "_blank"
+        }
+        rel={
+          service.primary
+            ? undefined
+            : "noopener noreferrer"
+        }
+        class:list={[
+          "flex min-h-14 items-center justify-center rounded-lg px-6 py-4 text-center font-semibold transition",
+
+          service.primary
+            ? "bg-red-800 text-white hover:bg-red-900"
+            : "border border-black/15 bg-white hover:border-black/40"
+        ]}
+      >
+        {service.name}
+      </a>
+
+    ))
+  }
+</div>

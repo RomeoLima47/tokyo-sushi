@@ -1,0 +1,81 @@
+---
+interface MenuItem {
+  name: string;
+  description?: string;
+  price: string;
+}
+
+interface MenuSection {
+  category: string;
+  items: MenuItem[];
+}
+
+interface Props {
+  sections: MenuSection[];
+}
+
+const { sections } = Astro.props;
+
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+---
+
+<nav
+  aria-label="Menu categories"
+  class="sticky top-[73px] z-40 border-b border-black/10 bg-[#f8f4ec]/95 backdrop-blur"
+>
+  <div class="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-5 py-4 lg:px-8">
+    {
+      sections.map((section) => (
+        <a
+          href={`#${slugify(section.category)}`}
+          class="shrink-0 rounded-full border border-black/15 px-4 py-2 text-sm font-medium transition hover:bg-black hover:text-white"
+        >
+          {section.category}
+        </a>
+      ))
+    }
+  </div>
+</nav>
+
+<div class="mx-auto max-w-6xl px-5 py-16 lg:px-8">
+  {
+    sections.map((section) => (
+      <section
+        id={slugify(section.category)}
+        class="scroll-mt-36 border-b border-black/10 py-12 first:pt-0 last:border-none"
+      >
+        <h2 class="mb-8 text-3xl font-bold tracking-tight">
+          {section.category}
+        </h2>
+
+        <div class="grid gap-x-12 gap-y-8 md:grid-cols-2">
+          {
+            section.items.map((item) => (
+              <article>
+                <div class="flex items-start justify-between gap-5">
+                  <h3 class="text-lg font-semibold">{item.name}</h3>
+                  <span class="shrink-0 font-semibold">
+                    {item.price}
+                  </span>
+                </div>
+
+                {
+                  item.description && (
+                    <p class="mt-2 max-w-xl text-sm leading-6 text-black/60">
+                      {item.description}
+                    </p>
+                  )
+                }
+              </article>
+            ))
+          }
+        </div>
+      </section>
+    ))
+  }
+</div>

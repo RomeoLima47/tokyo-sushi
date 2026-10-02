@@ -1,0 +1,42 @@
+---
+import { restaurant } from "../data/restaurant";
+---
+
+<div
+  class="fixed inset-x-0 bottom-0 z-50 border-t border-black/10 bg-white shadow-lg md:hidden"
+>
+  <div class="grid grid-cols-3">
+
+    {
+      restaurant.phone && (
+        <a
+          href={`tel:${restaurant.phone}`}
+          class="flex min-h-14 items-center justify-center border-r border-black/10 text-sm font-semibold"
+        >
+          Call
+        </a>
+      )
+    }
+
+    {
+      restaurant.links.googleMaps && (
+        <a
+          href={restaurant.links.googleMaps}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex min-h-14 items-center justify-center border-r border-black/10 text-sm font-semibold"
+        >
+          Directions
+        </a>
+      )
+    }
+
+    <a
+      href={restaurant.links.order}
+      class="flex min-h-14 items-center justify-center bg-red-800 text-sm font-semibold text-white"
+    >
+      Order
+    </a>
+
+  </div>
+</div>
