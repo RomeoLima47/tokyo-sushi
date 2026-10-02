@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import logo from "../assets/tokyo-logo.png";
+
 import { restaurant } from "../data/restaurant";
 ---
 
@@ -17,21 +20,27 @@ import { restaurant } from "../data/restaurant";
       aria-label="Tokyo Sushi & Korean Bistro home"
     >
 
-      <img
-        src="/images/logo/tokyo-logo.png"
+      <Image
+        src={logo}
         alt=""
-        width="48"
-        height="48"
+        width={96}
+        height={96}
+        format="webp"
+        quality={80}
         class="h-12 w-12 object-contain"
       />
 
       <div class="hidden sm:block">
 
-        <div class="font-semibold leading-tight">
+        <div
+          class="font-semibold leading-tight"
+        >
           Tokyo Sushi
         </div>
 
-        <div class="text-xs uppercase tracking-[0.14em] text-black/70">
+        <div
+          class="text-xs uppercase tracking-[0.14em] text-black/70"
+        >
           Korean Bistro
         </div>
 
@@ -85,9 +94,11 @@ import { restaurant } from "../data/restaurant";
     </nav>
 
 
-    <!-- MOBILE MENU -->
+    <!-- MOBILE NAVIGATION -->
 
-    <details class="relative md:hidden">
+    <details
+      class="relative md:hidden"
+    >
 
       <summary
         class="cursor-pointer list-none rounded-md border border-black/15 px-4 py-2 text-sm font-semibold"
