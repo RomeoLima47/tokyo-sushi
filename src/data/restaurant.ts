@@ -27,7 +27,8 @@ export const restaurant = {
   links: {
     order: "https://order.tokyosushifll.com",
 
-    googleMaps: "",
+    googleMaps:
+      "https://www.google.com/maps/dir/?api=1&destination=1499+SE+17th+St+STE+E%2C+Fort+Lauderdale%2C+FL+33316&travelmode=driving",
 
     googleBusiness: "",
 
