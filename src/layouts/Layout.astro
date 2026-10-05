@@ -1,23 +1,35 @@
 ---
 import "../styles/global.css";
+
 import MobileActions from "../components/MobileActions.astro";
+import { restaurant } from "../data/restaurant";
 
 interface Props {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
 }
 
-const { title, description } = Astro.props;
+const {
+  title = `${restaurant.name} | Japanese & Korean Cuisine in Fort Lauderdale`,
+  description = restaurant.description,
+  image = `${restaurant.website}/images/social/social-preview.jpg`,
+  noindex = false,
+} = Astro.props;
 
-const canonicalURL = new URL(
+const canonicalUrl = new URL(
   Astro.url.pathname,
-  Astro.site ?? "https://www.tokyosushifll.com"
-);
+  restaurant.website
+).toString();
 ---
 
 <!doctype html>
+
 <html lang="en">
+
   <head>
+
     <meta charset="UTF-8" />
 
     <meta
@@ -25,7 +37,18 @@ const canonicalURL = new URL(
       content="width=device-width, initial-scale=1"
     />
 
+    <meta
+      name="generator"
+      content={Astro.generator}
+    />
+
+
+    <!-- PAGE TITLE -->
+
     <title>{title}</title>
+
+
+    <!-- SEO -->
 
     <meta
       name="description"
@@ -34,31 +57,140 @@ const canonicalURL = new URL(
 
     <link
       rel="canonical"
-      href={canonicalURL}
+      href={canonicalUrl}
     />
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content="https://www.tokyosushifll.com/images/social/social-preview.jpg"/>
+    {
+      noindex && (
+        <meta
+          name="robots"
+          content="noindex, nofollow"
+        />
+      )
+    }
 
-    <meta property="og:site_name" content="Tokyo Sushi & Korean Bistro"/>
 
-    <meta name="twitter:card" content="summary_large_image"/>
+    <!-- THEME -->
 
-    <meta name="theme-color" content="#181512" />
+    <meta
+      name="theme-color"
+      content="#f8f4ec"
+    />
+
+
+    <!-- FAVICONS -->
+
+    <link
+      rel="icon"
+      href="/favicon.ico"
+      sizes="any"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon-32x32.png"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon-16x16.png"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-touch-icon.png"
+    />
+
+    <link
+      rel="manifest"
+      href="/site.webmanifest"
+    />
+
+
+    <!-- SITEMAP -->
 
     <link
       rel="sitemap"
       href="/sitemap-index.xml"
     />
+
+
+    <!-- OPEN GRAPH -->
+
+    <meta
+      property="og:type"
+      content="website"
+    />
+
+    <meta
+      property="og:site_name"
+      content={restaurant.name}
+    />
+
+    <meta
+      property="og:title"
+      content={title}
+    />
+
+    <meta
+      property="og:description"
+      content={description}
+    />
+
+    <meta
+      property="og:url"
+      content={canonicalUrl}
+    />
+
+    <meta
+      property="og:image"
+      content={image}
+    />
+
+    <meta
+      property="og:image:alt"
+      content="Tokyo Sushi & Korean Bistro in Fort Lauderdale, Florida"
+    />
+
+
+    <!-- TWITTER / SOCIAL PREVIEW -->
+
+    <meta
+      name="twitter:card"
+      content="summary_large_image"
+    />
+
+    <meta
+      name="twitter:title"
+      content={title}
+    />
+
+    <meta
+      name="twitter:description"
+      content={description}
+    />
+
+    <meta
+      name="twitter:image"
+      content={image}
+    />
+
   </head>
 
-  <body>
+
+  <body
+    class="bg-[#f8f4ec] text-black antialiased"
+  >
+
     <slot />
 
     <MobileActions />
 
   </body>
+
 </html>
