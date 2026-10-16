@@ -112,7 +112,7 @@ export const lunchMenu: LunchMenuSection[] = [
       {
         name: "Dolsot Bibimbap",
         description: "Bibimbap served in a hot stone bowl with two Korean side dishes.",
-        price: "15",
+        price: "18",
       },
     ],
   },
